@@ -8,11 +8,37 @@
             <div class="card-header"><h1>Tabelle für Kunden</h1></div>
 
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Vorname</th>
+                        <th scope="col">Nachname</th>
+                        <th scope="col">Gewerblicher Kunde</th>
+                        <th scope="col">Datum</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($kunden as $key => $kunde)
+                        <tr>
+                            <th scope="row">{{ $key + 1 }}</th>
+                            <th>{{ $kunde->vorname }}</th>
+                            <th>{{ $kunde->nachname }}</th>
+                            <th>
+                                @if($kunde->gewerblicher_kunde == 0)
+                                    <span>Nein</span>
+                                @elseif($kunde->gewerblicher_kunde == 1)
+                                    <span>Ja</span>
+                                @endif
+                            </th>
+                            <th>{{ $kunde->created_at->diffForHumans() }}</th>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <div>
+                    <span>{{ $kunden->render() }}</span>
+                </div>
             </div>
         </div>
     </div>
