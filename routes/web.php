@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'KundeController@index');
+Route::get('/', 'KundeController@index')->name('home');
+Route::post('/kunde/erstellen', 'KundeController@store')->name('kunde.store');
